@@ -62,4 +62,8 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+    // 追加
+    protected $redirectTo = '/';
+
 }
