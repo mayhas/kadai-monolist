@@ -21,7 +21,12 @@ Route::post('signup', 'Auth\AuthController@postRegister')->name('signup.post');
 Route::get('login', 'Auth\AuthController@getLogin')->name('login.get');
 Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
 Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
+
 // 楽天ＡＰＩ
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('items', 'ItemsController', ['only' => ['create', 'show']]);
+    
+    Route::post('want', 'ItemUserController@want')->name('item_user.want');
+    Route::delete('want', 'ItemUserController@dont_want')->name('item_user.dont_want');
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
 });
